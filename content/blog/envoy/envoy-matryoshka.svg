@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 780" width="100%" height="100%">
+  <defs>
+    <style>
+      .title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 20px; font-weight: bold; fill: #1f2328; }
+      .subtitle { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 13px; fill: #57606a; }
+      .box-label { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 14px; font-weight: 700; }
+      .box-detail { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 12px; fill: #24292f; }
+      .badge-text { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; font-weight: bold; fill: #ffffff; }
+    </style>
+  </defs>
+
+  <!-- Canvas Background -->
+  <rect width="1100" height="780" fill="#f6f8fa" rx="12" />
+
+  <!-- Header -->
+  <text x="40" y="45" class="title">🪆 The Envoy Matryoshka Doll Mental Model</text>
+  <text x="40" y="68" class="subtitle">Hierarchical containment and layer-by-layer request unwrapping from Downstream Socket to Pod Endpoints</text>
+
+  <!-- DOLL 1: LISTENER -->
+  <g transform="translate(40, 95)">
+    <rect width="1020" height="645" rx="10" fill="#ddf4ff" stroke="#0969da" stroke-width="2.5" />
+    <rect x="16" y="16" width="46" height="22" rx="4" fill="#0969da" />
+    <text x="24" y="31" class="badge-text">LDS</text>
+    <text x="70" y="32" class="box-label" fill="#0969da">DOLL 1: Listener (0.0.0.0:443)</text>
+    <text x="320" y="32" class="box-detail">• Binds port &amp; OS sockets • Listener Filters (TLS Inspector, Proxy Protocol)</text>
+
+    <!-- DOLL 2: FILTER CHAIN -->
+    <g transform="translate(25, 55)">
+      <rect width="970" height="565" rx="8" fill="#fbefff" stroke="#8250df" stroke-width="2.5" />
+      <rect x="16" y="16" width="46" height="22" rx="4" fill="#8250df" />
+      <text x="24" y="31" class="badge-text">SDS</text>
+      <text x="70" y="32" class="box-label" fill="#8250df">DOLL 2: Filter Chain &amp; TLS Context</text>
+      <text x="350" y="32" class="box-detail">• SNI Match (*.example.com) • TLS Certificates • ALPN (h2, http/1.1)</text>
+
+      <!-- DOLL 3: HTTP CONNECTION MANAGER -->
+      <g transform="translate(25, 55)">
+        <rect width="920" height="485" rx="8" fill="#dafbe1" stroke="#1a7f37" stroke-width="2.5" />
+        <rect x="16" y="16" width="46" height="22" rx="4" fill="#1a7f37" />
+        <text x="22" y="31" class="badge-text">HCM</text>
+        <text x="70" y="32" class="box-label" fill="#1a7f37">DOLL 3: HTTP Connection Manager (Network Filter)</text>
+        <text x="440" y="32" class="box-detail">• Decodes HTTP bytes • HTTP Filter Chain (Auth, RateLimit, Router)</text>
+
+        <!-- DOLL 4: ROUTE CONFIGURATION & VHOST -->
+        <g transform="translate(25, 55)">
+          <rect width="870" height="405" rx="8" fill="#fff8c5" stroke="#9a6700" stroke-width="2.5" />
+          <rect x="16" y="16" width="46" height="22" rx="4" fill="#9a6700" />
+          <text x="24" y="31" class="badge-text">RDS</text>
+          <text x="70" y="32" class="box-label" fill="#9a6700">DOLL 4: Route Configuration &amp; Virtual Host</text>
+          <text x="390" y="32" class="box-detail">• Host header matching: domains: ["api.example.com", "app.example.com"]</text>
+
+          <!-- DOLL 5: ROUTE ENTRY -->
+          <g transform="translate(25, 55)">
+            <rect width="820" height="325" rx="8" fill="#ffedd5" stroke="#bc4c00" stroke-width="2.5" />
+            <rect x="16" y="16" width="60" height="22" rx="4" fill="#bc4c00" />
+            <text x="23" y="31" class="badge-text">ROUTE</text>
+            <text x="84" y="32" class="box-label" fill="#bc4c00">DOLL 5: Route Entry</text>
+            <text x="240" y="32" class="box-detail">• Match prefix: "/v1/checkout" • Directives: retries, timeout, prefix-rewrite • Target cluster: "checkout_pool"</text>
+
+            <!-- DOLL 6: CLUSTER -->
+            <g transform="translate(25, 55)">
+              <rect width="770" height="245" rx="8" fill="#ffebe9" stroke="#cf222e" stroke-width="2.5" />
+              <rect x="16" y="16" width="46" height="22" rx="4" fill="#cf222e" />
+              <text x="24" y="31" class="badge-text">CDS</text>
+              <text x="70" y="32" class="box-label" fill="#cf222e">DOLL 6: Cluster (Upstream Service Definition)</text>
+              <text x="395" y="32" class="box-detail">• Load Balancing (Round Robin) • Health Checking • Outlier Detection • Circuit Breaker</text>
+
+              <!-- DOLL 7: ENDPOINTS (CORE SEED) -->
+              <g transform="translate(25, 55)">
+                <rect width="720" height="165" rx="8" fill="#e6fcf5" stroke="#0f7b58" stroke-width="2.5" stroke-dasharray="6,4" />
+                <rect x="16" y="16" width="46" height="22" rx="4" fill="#0f7b58" />
+                <text x="24" y="31" class="badge-text">EDS</text>
+                <text x="70" y="32" class="box-label" fill="#0f7b58">🌰 INMOST CORE: Endpoints (Upstream Workloads / Pods)</text>
+                
+                <g transform="translate(20, 50)">
+                  <!-- Pod 1 -->
+                  <rect x="0" y="0" width="210" height="85" rx="6" fill="#ffffff" stroke="#0f7b58" stroke-width="1.5" />
+                  <text x="12" y="24" font-family="monospace" font-size="12" font-weight="bold" fill="#0f7b58">Pod 1: 10.244.1.42:8080</text>
+                  <text x="12" y="44" font-family="sans-serif" font-size="11" fill="#57606a">Zone: us-central1-a</text>
+                  <text x="12" y="64" font-family="sans-serif" font-size="11" fill="#1a7f37">● Healthy | Weight: 100</text>
+
+                  <!-- Pod 2 -->
+                  <rect x="230" y="0" width="210" height="85" rx="6" fill="#ffffff" stroke="#0f7b58" stroke-width="1.5" />
+                  <text x="242" y="24" font-family="monospace" font-size="12" font-weight="bold" fill="#0f7b58">Pod 2: 10.244.2.18:8080</text>
+                  <text x="242" y="44" font-family="sans-serif" font-size="11" fill="#57606a">Zone: us-central1-b</text>
+                  <text x="242" y="64" font-family="sans-serif" font-size="11" fill="#1a7f37">● Healthy | Weight: 100</text>
+
+                  <!-- Pod 3 -->
+                  <rect x="460" y="0" width="210" height="85" rx="6" fill="#ffffff" stroke="#0f7b58" stroke-width="1.5" />
+                  <text x="472" y="24" font-family="monospace" font-size="12" font-weight="bold" fill="#0f7b58">Pod 3: 10.244.3.99:8080</text>
+                  <text x="472" y="44" font-family="sans-serif" font-size="11" fill="#57606a">Zone: us-central1-c</text>
+                  <text x="472" y="64" font-family="sans-serif" font-size="11" fill="#1a7f37">● Healthy | Weight: 100</text>
+                </g>
+              </g>
+
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
