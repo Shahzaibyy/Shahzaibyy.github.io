@@ -2,207 +2,151 @@
 title = "Home"
 +++
 
-{% crt() %}
-<pre id="crt-terminal"
-    style="height: 7.5rem; line-height: 1.1rem; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-start;"
->
-</pre>
-<script>
-(function() {
-    const terminal = document.getElementById('crt-terminal');
-    if (!terminal) return;
+<div class="portfolio-home">
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-copy">
+      <p class="eyebrow">Senior Software Engineer · Platform Engineering &amp; SRE</p>
+      <h1 id="hero-title">I build and run products from architecture to production.</h1>
+      <p class="hero-lead">Five years across reliable backend systems, cloud platforms, mobile products, and AI infrastructure—working with Python, Go, Kubernetes, AWS, Flutter, and modern LLM stacks.</p>
+      <div class="hero-actions">
+        <a class="button primary" href="mailto:shahzaibshah0028@gmail.com">Let’s work together</a>
+        <a class="button" href="#projects">View selected work</a>
+        <a class="text-link" href="/shahzaib-hassan-cv.pdf">Download résumé →</a>
+      </div>
+      <p class="availability"><span aria-hidden="true"></span> Islamabad, Pakistan · Available for KSA relocation · Transferable Iqama</p>
+    </div>
+    <div class="portrait-wrap">
+      <img class="portrait" src="/img/shahzaib-hassan.png" alt="Shahzaib Hassan" width="460" height="460">
+      <p>Shahzaib Hassan<br><small>Platform · Backend · Mobile · AI</small></p>
+    </div>
+  </section>
 
-    let buffer = Array(5).fill("");
+  <section class="metrics" aria-label="Career highlights">
+    <div><strong>500K+</strong><span>concurrent users supported</span></div>
+    <div><strong>99.95%</strong><span>production uptime delivered</span></div>
+    <div><strong>40%</strong><span>faster development cycles</span></div>
+    <div><strong>50+</strong><span>client projects delivered</span></div>
+  </section>
 
-    const getTimestamp = () => {
-        const now = new Date();
-        const year = now.getFullYear();
-        const month = String(now.getMonth() + 1).padStart(2, '0');
-        const day = String(now.getDate()).padStart(2, '0');
-        const hours = String(now.getHours()).padStart(2, '0');
-        const minutes = String(now.getMinutes()).padStart(2, '0');
-        const seconds = String(now.getSeconds()).padStart(2, '0');
-        const ms = String(now.getMilliseconds()).padStart(3, '0');
-        return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}.${ms}`;
-    };
+  <section id="expertise" class="portfolio-section">
+    <div class="section-heading">
+      <p class="eyebrow">What I do</p>
+      <h2>One engineer across the whole delivery path.</h2>
+      <p>I’m most useful where software, infrastructure, and product delivery meet.</p>
+    </div>
+    <div class="capability-grid">
+      <article class="capability-card">
+        <span class="card-number">01</span>
+        <h3>Backend &amp; distributed systems</h3>
+        <p>Python and Go services, real-time APIs, event-driven systems, secure auth, and performance-focused data layers.</p>
+        <p class="stack">FastAPI · Django · Go · PostgreSQL · Redis · Kafka · Celery</p>
+      </article>
+      <article class="capability-card">
+        <span class="card-number">02</span>
+        <h3>Platform engineering &amp; SRE</h3>
+        <p>Production infrastructure designed for observability, repeatable delivery, high availability, and calm operations.</p>
+        <p class="stack">Linux · AWS · Kubernetes · Docker · Terraform · GitHub Actions</p>
+      </article>
+      <article class="capability-card">
+        <span class="card-number">03</span>
+        <h3>Mobile &amp; product delivery</h3>
+        <p>Cross-platform apps and web experiences taken from requirements through store release and production support.</p>
+        <p class="stack">Flutter · React Native · React · Next.js · WebSockets · Firebase</p>
+      </article>
+      <article class="capability-card">
+        <span class="card-number">04</span>
+        <h3>AI infrastructure</h3>
+        <p>Practical LLM, RAG, and voice systems connected to real workflows, evaluation, analytics, and human escalation.</p>
+        <p class="stack">OpenAI · Claude · LangChain · Pinecone · Twilio · VAPI · n8n</p>
+      </article>
+    </div>
+  </section>
 
-    const bootSequence = [
-        { cat: "main", file: "server.cc:352", msg: "envoy version: v1.31.0/d3bb2586b/CLEAN/RELEASE", delay: 50 },
-        { cat: "main", file: "server.cc:421", msg: "initializing epoch 0 (trusted_ca: true)", delay: 80 },
-        { cat: "config", file: "configuration_impl.cc:127", msg: "loading bootstrap config", delay: 120 },
-        { cat: "upstream", file: "grpc_mux_impl.cc:120", msg: "establishing xDS gRPC channel to control-plane.internal:18000", delay: 250 },
-        { cat: "upstream", file: "grpc_subscription_impl.cc:101", msg: "gRPC config subscription active: envoy.config.listener.v3.Listener", delay: 180 },
-        { cat: "upstream", file: "grpc_subscription_impl.cc:118", msg: "LDS: update received (version 1a8c9b), 2 active listeners", delay: 150 },
-        { cat: "upstream", file: "grpc_subscription_impl.cc:101", msg: "gRPC config subscription active: envoy.config.cluster.v3.Cluster", delay: 120 },
-        { cat: "upstream", file: "grpc_subscription_impl.cc:118", msg: "CDS: update received (version 1a8c9b), 4 active clusters", delay: 140 },
-        { cat: "upstream", file: "grpc_subscription_impl.cc:101", msg: "gRPC config subscription active: envoy.config.route.v3.RouteConfiguration", delay: 100 },
-        { cat: "upstream", file: "grpc_subscription_impl.cc:118", msg: "RDS: update received (version 9d2f1c), routes updated", delay: 110 },
-        { cat: "upstream", file: "grpc_subscription_impl.cc:101", msg: "gRPC config subscription active: envoy.config.endpoint.v3.ClusterLoadAssignment", delay: 130 },
-        { cat: "upstream", file: "grpc_subscription_impl.cc:118", msg: "EDS: update received (version 4f2c0a), 18 endpoints healthy", delay: 120 },
-        { cat: "main", file: "server.cc:662", msg: "all control plane configs applied. starting main control loop", delay: 200 },
-        { cat: "main", file: "server.cc:680", msg: "protocol engine started, ready for traffic", delay: 100 }
-    ];
+  <section id="experience" class="portfolio-section">
+    <div class="section-heading">
+      <p class="eyebrow">Experience</p>
+      <h2>Building systems that stay useful after launch.</h2>
+    </div>
+    <div class="timeline">
+      <article>
+        <div class="timeline-meta"><span>2025 — Present</span><span>Islamabad</span></div>
+        <h3>Senior Software Engineer <small>· DevGate</small></h3>
+        <p>Own platform, backend, mobile, frontend, and AI delivery for multinational clients. Architected services supporting 500K+ concurrent users, led AWS and Kubernetes operations, and shipped LLM and voice automation products.</p>
+      </article>
+      <article>
+        <div class="timeline-meta"><span>2026 — Present</span><span>Remote · US clients</span></div>
+        <h3>Senior Software Engineer <small>· Develoit Solutions</small></h3>
+        <p>Lead delivery from requirements and architecture through deployment, collaborating directly with US stakeholders across time zones and Agile sprints.</p>
+      </article>
+      <article>
+        <div class="timeline-meta"><span>2024 — 2025</span><span>Islamabad</span></div>
+        <h3>Backend &amp; Full-Stack Engineer <small>· OneKode</small></h3>
+        <p>Built secure REST and GraphQL systems for US and European clients, reached 85% test coverage, and improved data retrieval by 70% through indexing and Redis caching.</p>
+      </article>
+      <article>
+        <div class="timeline-meta"><span>2022 — 2024</span><span>Remote · US clients</span></div>
+        <h3>Python &amp; JavaScript Developer <small>· Global Citech</small></h3>
+        <p>Delivered Django features for a high-volume Arabian food platform processing more than 200K daily orders, including real-time order tracking.</p>
+      </article>
+    </div>
+  </section>
 
-    const router = {
-        "GET": [
-            "/", "/metrics", "/healthz",
-            "/static/css/main.css", "/favicon.ico", "/api/v1/portfolio/summary"
-        ],
-        "POST": [
-            "/api/v1/auth/login", "/api/v1/portfolio/rebalance", 
-            "/v1/wasm/deploy/component", "/api/v1/sigil/generate"
-        ],
-        "PUT": [
-            "/api/v1/user/settings", "/v1/wasm/registry/update"
-        ],
-        "DELETE": [
-            "/api/v1/portfolio/asset/BTC", "/v1/wasm/instance/terminate"
-        ]
-    };
-    const statuses = [200, 200, 200, 200, 201, 304, 404, 500, 403];
-    const methods = Object.keys(router);
+  <section id="projects" class="portfolio-section">
+    <div class="section-heading split-heading">
+      <div>
+        <p class="eyebrow">Selected work</p>
+        <h2>Products, platforms, and production outcomes.</h2>
+      </div>
+      <a class="text-link" href="https://github.com/Shahzaibyy" target="_blank" rel="noopener">Public GitHub ↗</a>
+    </div>
+    <div class="project-grid">
+      <article class="project-card featured">
+        <p class="project-type">Mobile product · US</p>
+        <h3>MyKinn</h3>
+        <p>Led the team and built a social networking product end to end: Flutter apps, an async FastAPI backend, real-time chat and calling, media processing, face verification, notifications, and automated AWS delivery.</p>
+        <ul class="project-results"><li>Live on iOS and Android</li><li>Clean architecture</li><li>Real-time at scale</li></ul>
+        <p class="stack">Flutter · FastAPI · PostgreSQL · Redis · Celery · AWS</p>
+      </article>
+      <article class="project-card">
+        <p class="project-type">Platform engineering · FinTech</p>
+        <h3>Core Backend &amp; DevOps Platform</h3>
+        <p>Built a secure transaction and account-management backend alongside a Go automation layer for CI/CD, infrastructure provisioning, and zero-downtime releases.</p>
+        <p class="stack">Django · Go · Docker · Kubernetes · AWS</p>
+      </article>
+      <article class="project-card">
+        <p class="project-type">Voice AI · France</p>
+        <h3>Scientia</h3>
+        <p>Created an AI order-taking platform with live transcripts, CRM automation, escalation routing, and a SaaS analytics dashboard.</p>
+        <p class="stack">Twilio · VAPI · n8n · FastAPI · React</p>
+      </article>
+      <article class="project-card">
+        <p class="project-type">SaaS · Agriculture</p>
+        <h3>DroneTrax</h3>
+        <p>Delivered field mapping, crop-health analytics, flight scheduling, real-time processing services, and a React operations dashboard for drone operators.</p>
+        <p class="stack">Django · FastAPI · React · PostgreSQL</p>
+      </article>
+    </div>
+  </section>
 
-    const xdsUpdates = [
-        { cat: "upstream", file: "grpc_subscription_impl.cc:118", msg: "EDS: update received (version {ver}), 18 endpoints healthy" },
-        { cat: "upstream", file: "grpc_subscription_impl.cc:118", msg: "CDS: update received (version {ver}), 4 active clusters" },
-        { cat: "upstream", file: "grpc_subscription_impl.cc:118", msg: "RDS: update received (version {ver}), routes updated" },
-        { cat: "upstream", file: "grpc_subscription_impl.cc:118", msg: "LDS: update received (version {ver}), 2 active listeners" }
-    ];
+  <section class="portfolio-section profile-note">
+    <div>
+      <p class="eyebrow">Background</p>
+      <h2>Engineering depth with delivery ownership.</h2>
+    </div>
+    <div>
+      <p>B.S. Software Engineering from COMSATS University Islamabad. Experienced with teams and clients across the US, Europe, and GCC, including EST, PST, and CET collaboration.</p>
+      <p class="certifications">Microsoft Azure DevOps Professional · Microsoft Azure AI Professional · Machine Learning (Anaconda) · Ubuntu Linux Certified</p>
+    </div>
+  </section>
 
-    const updateTerminal = (line) => {
-        buffer.shift();
-        buffer.push(line);
-        terminal.innerText = buffer.join('\n');
-    };
-
-    const makeBootLog = (entry) => {
-        const ts = getTimestamp();
-        return `[${ts}][1][info][${entry.cat}] [${entry.file}] ${entry.msg}`;
-    };
-
-    const generateLog = () => {
-        const now = new Date();
-        const ts = now.toISOString();
-        const method = methods[Math.floor(Math.random() * methods.length)];
-        const routeList = router[method];
-        const path = routeList[Math.floor(Math.random() * routeList.length)];
-        const status = statuses[Math.floor(Math.random() * statuses.length)];
-        const bytesRx = (method === "POST" || method === "PUT") ? Math.floor(Math.random() * 800) + 45 : 0;
-        const bytesTx = status === 304 ? 0 : Math.floor(Math.random() * 8000) + 124;
-        const latency = (Math.random() * 45 + 2).toFixed(1);
-        return `[${ts}] "${method} ${path} HTTP/1.1" ${status} - ${bytesRx} ${bytesTx} ${latency}ms`;
-    };
-
-    const generateXdsUpdate = () => {
-        const update = xdsUpdates[Math.floor(Math.random() * xdsUpdates.length)];
-        const ver = Math.random().toString(16).substring(2, 8);
-        const msg = update.msg.replace("{ver}", ver);
-        const now = new Date();
-        const ts = now.toISOString();
-        return `[${ts}][1][info][${update.cat}] [${update.file}] ${msg}`;
-    };
-
-    // Initialize
-    terminal.innerText = buffer.join('\n');
-
-    let bootIndex = 0;
-    const runBootstep = () => {
-        if (bootIndex < bootSequence.length) {
-            const step = bootSequence[bootIndex];
-            updateTerminal(makeBootLog(step));
-            bootIndex++;
-            const nextDelay = bootIndex < bootSequence.length ? bootSequence[bootIndex].delay : 3000;
-            setTimeout(runBootstep, nextDelay);
-        } else {
-            loop();
-        }
-    };
-
-    const loop = () => {
-        const isXds = Math.random() < 0.20;
-        const logLine = isXds ? generateXdsUpdate() : generateLog();
-        updateTerminal(logLine);
-        const isBurst = Math.random() > 0.05;
-        const delay = isBurst ? Math.random() * 200 : Math.random() * 4000 + 1500;
-        setTimeout(loop, delay);
-    };
-
-    setTimeout(runBootstep, 400);
-})();
-</script>
-{% end %}
-
-# Vasilios Syrakis
-
-I'm a site reliability, systems, and platform engineer based in Sydney,
-Australia.
-
-You might know me from a [YouTube
-video](https://www.youtube.com/watch?v=55pTFVoclvE) about being laid off after
-eight years at Atlassian. In it, I talked through some of the systems I helped
-build there.
-
-{{ image(url="/img/versailles.png", alt="me", no_hover=true) }}
-
-## What you'll find here
-
-I publish technical articles and short essays here, and usually record a video
-to go with them. You can follow new posts through the [RSS feed](/atom.xml).
-
-You can see what content I plan to produce in [this kanban board](/schedule).
-
-## My career history
-
-My path hasn't been exactly linear. I never finished high school, let alone
-university. If you're interested in how I ended up where I am, here's the
-story.
-
-At 16, two weeks of work experience led to my first job, doing graphic design.
-I did that for two years before deciding it wasn't for me, then took an IT
-helpdesk traineeship at ANSTO. After a year, they offered to promote me from
-trainee to a regular employee, doubling my pay, but I turned it down to go look
-for work on my own.
-
-In hindsight, turning down the offer from ANSTO was a mistake. I worked in some
-roles I didn't enjoy before ending up at Fujitsu doing helpdesk again. About
-half a year later, I joined a managed service provider as an associate sysadmin,
-managing Windows fleets on VMware and the company's own hardware.
-
-That MSP job was where I taught myself how to code properly. I started with
-PowerShell since I was working with Windows Server. I later moved on to Python,
-taking a free Codecademy course, and then trying to rewrite some of my
-PowerShell scripts. I bought a copy of [Flask Web
-Development](/flask-web-development) and started building internal tools to
-make my job easier. For example, I wrote a little app to manage a multi-tenant
-BIND DNS server. I also picked up NGINX and MySQL (setting up a marketing site
-for Optus at one point), and eventually went deep into Puppet, Chef, and
-SaltStack. Around this time, AWS was starting to look like an existential
-threat to the company (Cloud was new, our service was managing racks in the
-datacenter).
-
-From there, I moved to Tyro Payments as a member of the operations team. I
-showed a particular interest in scripting and automation, so they moved me to
-a new DevOps team. I spent my time there using salt-cloud (which had great
-VMware support at the time) to fully automate machine provisioning, booting VMs
-and then applying Puppet manifests based on their role.
-
-In 2018, I was poached by Atlassian to join their network edge team. Over the
-next eight years, I used that Flask and SaltStack background, picked up Envoy
-and AWS, and helped build the next iteration of Atlassian's Global Edge,
-eventually migrating all company traffic behind it. It handled over 50 billion
-requests a day. Along the way I learned Rust, eventually deploying a couple of
-Rust gRPC services to production at that same scale.
-
-In March 2026, I was laid off by Atlassian and started working at Uptick, a SaaS
-company in the fire-safety industry.
-
-## Work with me
-
-I'm open to occasional advisory and contract work. If you're dealing with a
-problem around Envoy, network edge, internal platforms, Python, or Rust, email
-me at **[syrakis@pm.me](mailto:syrakis@pm.me)** with some context. If I'm not
-the right person, I'll tell you.
-
-For sensitive matters that require encryption, [I have PGP tools which use my
-public key](/pgp). You can also request that I sign messages to verify they
-came from me and not an imposter.
+  <section id="contact" class="contact-card">
+    <p class="eyebrow">Let’s build something dependable</p>
+    <h2>Need someone who can own the path from code to production?</h2>
+    <p>I’m open to senior software, platform, SRE, backend, mobile, and AI infrastructure opportunities—especially with KSA-based teams.</p>
+    <div class="hero-actions">
+      <a class="button primary" href="mailto:shahzaibshah0028@gmail.com">shahzaibshah0028@gmail.com</a>
+      <a class="button" href="https://www.linkedin.com/in/shahzaib-dev" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a class="button" href="https://github.com/Shahzaibyy" target="_blank" rel="noopener">GitHub ↗</a>
+    </div>
+  </section>
+</div>

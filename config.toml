@@ -1,18 +1,13 @@
-title = "Vasilios Syrakis"
-description = "A simple blog made with Zola and Duckquill"
-base_url = "https://vsyrakis.dev"
+title = "Shahzaib Hassan"
+description = "Senior Software Engineer building reliable platforms, backend systems, mobile products, and AI infrastructure."
+base_url = "https://shahzaibyy.github.io"
 theme = "duckquill"
+author = "Shahzaib Hassan"
 
 compile_sass = true
 minify_html = true
-build_search_index = true
-generate_feeds = true
-author = "Vasilios Syrakis"
-
-taxonomies = [{ name = "tags", feed = true }]
-
-[search]
-index_format = "fuse_json"
+build_search_index = false
+generate_feeds = false
 
 [markdown]
 smart_punctuation = true
@@ -23,30 +18,28 @@ github_alerts = true
 theme = "tokyo-night"
 
 [extra]
-emoji_favicon = "🌘"
-accent_color = "plum"
-show_reading_time = true
-show_share_button = true
-scripts = ["presentation.js"]
-styles = ["presentation.css", "presence.css"]
-
-# Set this to the public HTTPS origin of the Phoenix app to enable presence.
-# For example: "https://presence.example.com"
-presence_server_url = "https://presence.vsyrakis.dev"
+emoji_favicon = "⚙️"
+accent_color = "#58a6ff"
+accent_color_dark = "#79c0ff"
+show_reading_time = false
+show_share_button = false
+styles = ["portfolio.css"]
+card = "/img/shahzaib-hassan.png"
 
 [extra.nav]
 show_feed = false
 show_repo = false
 links = [
-	{ name = "Blog",     url = "@/blog/_index.md" },
-	{ name = "Links",    url = "@/links/_index.md" },
-	{ name = "FAQ",      url = "@/faq.md" },
-	{ name = "PGP",      url = "@/pgp.md" },
-	{ name = "CV",      url = "/cv" },
-    #{ url = "tags", name = "Tags" }
+    { name = "Expertise", url = "/#expertise" },
+    { name = "Experience", url = "/#experience" },
+    { name = "Projects", url = "/#projects" },
+    { name = "Resume", url = "/shahzaib-hassan-cv.pdf" },
 ]
 
 [extra.footer]
 show_copyright = true
-show_powered_by = true
-links = []
+show_powered_by = false
+links = [
+    { name = "GitHub", url = "https://github.com/Shahzaibyy" },
+    { name = "LinkedIn", url = "https://www.linkedin.com/in/shahzaib-dev" },
+]
