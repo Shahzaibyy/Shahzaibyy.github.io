@@ -19,8 +19,8 @@ theme = "tokyo-night"
 
 [extra]
 emoji_favicon = "⚙️"
-accent_color = "#58a6ff"
-accent_color_dark = "#79c0ff"
+accent_color = "#006BFF"
+accent_color_dark = "#006BFF"
 show_reading_time = false
 show_share_button = false
 styles = ["portfolio.css"]

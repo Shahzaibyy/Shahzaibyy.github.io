@@ -17,7 +17,6 @@ title = "Home"
     </div>
     <div class="portrait-wrap">
       <img class="portrait" src="/img/shahzaib-hassan.png" alt="Shahzaib Hassan" width="460" height="460">
-      <p>Shahzaib Hassan<br><small>Platform · Backend · Mobile · AI</small></p>
     </div>
   </section>
 
