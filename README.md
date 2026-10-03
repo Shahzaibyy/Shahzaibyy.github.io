@@ -17,4 +17,8 @@ The site is pinned to Zola `0.20.0` for compatibility with the included theme re
 - Site metadata/navigation: `config.toml`
 - Resume: `static/shahzaib-hassan-cv.pdf`
 
-The site deploys to GitHub Pages through `.github/workflows/deploy.yml`.
+## Publishing
+
+The generated site is served from the `gh-pages` branch. Build with Zola, then
+publish the contents of `public/` to that branch. This avoids a dependency on
+GitHub Actions while Actions are unavailable for the account.
